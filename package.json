@@ -1,0 +1,22 @@
+{
+  "name": "emotionalanalysis",
+  "version": "1.0.0",
+  "description": "1.Text Analysis:   Installation: ```npm install --save watson-developer-cloud```",
+  "main": "Text.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alicia1529/EmotionalAnalysis.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Alicia1529/EmotionalAnalysis/issues"
+  },
+  "homepage": "https://github.com/Alicia1529/EmotionalAnalysis#readme",
+  "dependencies": {
+    "request": "^2.88.0"
+  }
+}

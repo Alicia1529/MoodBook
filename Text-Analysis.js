@@ -12,25 +12,20 @@ var naturalLanguageUnderstanding = new NaturalLanguageUnderstandingV1({
 });
 
 //output array of objects(for each day)
-// [{ "rachel":{
+// [{ "Rachel":{
 //           "emotion":[object1,object2,...],
 //           "sentiment":[num1,num2,...]
 //         },
 //     "Joey":{...}
 // }]
-console.log("hi")
+
 const outputTextAnalysis = [];
-console.log(dataText.length)
-console.log("dataText")
-console.log(dataText['Jo'])
 for (const eachDay of dataText){
   const dateAnalysis = {};
   for (const actor of dataActors){
-    console.log("actor",actor)
     actorData = eachDay[actor];
     const emotion = [];
     const sentiment = [];
-    //fixme
     console.log("actor",actor)
     for (const TextSentence of actorData){
       var parameters = {
@@ -58,6 +53,7 @@ for (const eachDay of dataText){
   }
   outputTextAnalysis.push(dateAnalysis)
 }
+
 // console.log(outputTextAnalysis[0]["Rachel"])
 module.exports = {
   outputTextAnalysis:outputTextAnalysis,
