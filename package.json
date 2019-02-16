@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Alicia1529/EmotionalAnalysis#readme",
   "dependencies": {
-    "request": "^2.88.0"
+    "request": "^2.88.0",
+    "watson-developer-cloud": "^3.18.1"
   }
 }
