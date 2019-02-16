@@ -2,6 +2,7 @@ import http.client, urllib.request, urllib.parse, urllib.error, base64
 import json
 import requests
 import imageHelper as helper
+import time
 exp = 3
 num = 10
 face_analysis = []
@@ -36,8 +37,9 @@ for i in range(exp):
             ep['sentiment'] = [sentiment]
         else:
             ep['sentiment'].append(sentiment)
+        time.sleep(5)
     print(ep)
     face_analysis.append(ep)
 
-with open("Output/face_analysis.json", "w") as outfile:
+with open("face_analysis.json", "w") as outfile:
     json.dump(str(face_analysis), outfile)
