@@ -10,7 +10,10 @@ const subscriptionKey = 'f2aa85c209504401b44fb957d14f1054';
 // westus, replace "westcentralus" in the URL below with "westus".
 const uriBase = 'https://eastus.api.cognitive.microsoft.com/face/v1.0/detect';
 
-const imageUrl = 'https://s1.r29static.com//bin/entry/608/x,80/1839167/image.jpg';
+const imageUrl = 'Input/Images/1.png';
+
+// const imageUrl = 'https://s1.r29static.com//bin/entry/608/x,80/1839167/image.jpg';
+
 
 // Request parameters.
 const params = {

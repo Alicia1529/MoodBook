@@ -1,7 +1,7 @@
 import http.client, urllib.request, urllib.parse, urllib.error, base64
 import requests
 import imageHelper as helper
-exp = 1;
+exp = 3;
 num = 10;
 face_analysis = []
 emotion = []
