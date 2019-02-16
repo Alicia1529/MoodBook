@@ -11,7 +11,7 @@ var naturalLanguageUnderstanding = new NaturalLanguageUnderstandingV1({
 });
 
 function stripComments(str) {
-  return str.replace(/\(.*\)|\[.*\]/g, "");
+  return str.replace(/\(.*\)|\[.*\]/g, "").replace('!', '.');
 }
 
 for (const filename of fileNames){
