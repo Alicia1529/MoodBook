@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>name</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> 
+	<link rel="stylesheet" type="text/css" href="history.css">
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.js"></script>
+	<script src="utils2.js"></script>
+
+	<link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700" rel="stylesheet">
+</head>
+<body>
+	<div id="container">
+		<div id="left">
+			<div id="logo">
+				
+			</div>
+			<ul class="nav">
+				<li class="nav-item">
+					<div class="nav-link tablink" id="t1" onclick="overall(); changeColor(event, 't1')">Overall performance</div>
+				</li>
+				<li class="nav-item">
+					<div class="nav-link tablink" id="t2" onclick="chat(); changeColor(event, 't2')">social index</div>
+				</li>
+				<li class="nav-item">
+					<div class="nav-link tablink" id="t3" onclick="detail5(); changeColor(event, 't3')">sentiments in detail</div>
+				</li>
+				<li class="nav-item">
+					<div class="nav-link tablink" id="t4" onclick="backSpace(); changeColor(event, 't4')">keyboard index</div>
+				</li>
+			</ul>
+			<div id="home">
+				<a href="index.html">home</a>
+			</div>
+		</div>
+
+		<div id="middle">
+			<div id="words">
+				Hi Rachel,<br><br>
+				To keep track of your mental health status, <br>you need recent dataset to see the trend and take action. <br><br> It is hard for you to remember the details, we totally get it, so we remembered them for you. <br><br>
+				Go back in time and take a tour of your past emation status analysis, whenever you want to.
+			</div>
+			<div class="chart">
+				<canvas id="chart1">
+				</canvas>
+				<canvas id="chart2">
+				</canvas>
+				<canvas id="chart3">
+				</canvas>
+				<canvas id="chart4">
+				</canvas>
+			</div>
+		</div>
+
+		<div id="right">
+			<img id="profile-pic" src="assets/rachel.png">
+			<div>Rachel</div>
+		</div>
+		
+	</div>
+		
+	<script type="text/javascript" src="chart1.js"></script>
+	<script type="text/javascript" src="chart2.js"></script>
+	<script type="text/javascript" src="chart3.js"></script>
+	<script type="text/javascript" src="chart4.js"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>

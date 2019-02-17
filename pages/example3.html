@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Scriptable > Bubble | Chart.js sample</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.js"></script>
+	<script src="utils3.js"></script>
+</head>
+<body>
+	<div class="content">
+		<div class="wrapper"><canvas id="chart4"></canvas></div>
+	</div>
+
+	<script>
+		var data = {
+			datasets:[{
+				data: [{
+				x:2.15,
+				y:10,
+				r:500/24
+			},{
+				x:2.16,
+				y:15,
+				r:800/24
+			},{
+				x:2.17,
+				y:5.25,
+				r:663/24
+			}]
+	     }]
+		};
+
+		var options = {
+			aspectRatio: 1,
+			legend: false,
+			tooltips: false,
+			elements: {
+				point: {
+					backgroundColor: 'rgba(246,77,108,1)',
+					borderColor: 'rgba(246,77,108,1)',
+				}
+			},
+			scales:{
+				xAxes:[{
+					ticks:{
+						stepSize: 0.01,
+					}
+				}],
+				yAxes:[{
+					ticks:{
+						max:100
+					}
+				}]
+			}
+		};
+
+		var chart4 = new Chart('chart4', {
+			type: 'bubble',
+			data: data,
+			options: options
+		});
+	</script>
+</body>
+</html>

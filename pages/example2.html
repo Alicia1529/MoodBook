@@ -1,0 +1,132 @@
+
+<!doctype html>
+<html>
+
+<head>
+	<title>Line Chart</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.js"></script>
+	<script src="utils2.js"></script>
+	<style>
+		canvas {
+			-moz-user-select: none;
+			-webkit-user-select: none;
+			-ms-user-select: none;
+		}
+	</style>
+</head>
+
+<body>
+	<div>
+		<canvas id="chart1"></canvas>
+	</div>
+	<br>
+	
+	<script>
+		function randomNumber(min, max) {
+			return Math.random() * (max - min) + min;
+		}
+
+		function randomBar(date, lastClose) {
+			var open = randomNumber(lastClose * 0.95, lastClose * 1.05);
+			var close = randomNumber(open * 0.95, open * 1.05);			
+			return {
+				t: date.valueOf(),
+				y: close
+			};
+		}
+
+		var dateFormat = 'MMMM DD YYYY';
+		var date = moment('February 14 2019', dateFormat);
+		var data = [randomBar(date, 30)];
+		var labels = [date];
+		while (data.length < 4) {
+			date = date.clone().add(1, 'd');
+			if (date.isoWeekday() <= 6) {
+				data.push(randomBar(date, data[data.length - 1].y));
+				labels.push(date);
+				console.log(date.isoWeekday());
+			}
+		}
+
+		var ctx = document.getElementById('chart1').getContext('2d');
+		ctx.canvas.width = 1000;
+		ctx.canvas.height = 300;
+
+		function newDate(days) {
+			return moment().add(days, 'd').toDate();
+		}
+
+		function newDateString(days) {
+			return moment().add(days, 'd').format(timeFormat);
+		}
+
+		var color = Chart.helpers.color;
+		var cfg = {
+			type: 'bar',
+			data: {
+				labels: labels,
+				datasets: [{
+					label: 'index of anger',
+					backgroundColor: 'rgba(21, 94, 99, 1)',
+					// borderColor: window.chartColors.red,
+					borderColor: 'rgba(21, 94, 99, 1)',
+					data: [10, 6, 2],
+					type: 'line',
+					// pointRadius: 1,
+					fill: false
+				},{
+					label: 'index of fear',
+					backgroundColor: 'rgba(246, 77, 108, 1)',
+					borderColor: 'rgba(246, 77, 108, 1)',
+					data: [12,19,3],
+					type: 'line',
+					fill:false
+				},{
+					label: 'index of disgust',
+					backgroundColor: 'rgba(118, 179, 157, 1)',
+					borderColor: 'rgba(118, 179, 157, 1)',
+					data: [2,3,10],
+					type: 'line',
+					fill:false
+				},{
+					label: 'index of joy',
+					backgroundColor: 'rgba(249, 230, 200, 1)',
+					borderColor: 'rgba(249, 230, 200, 1)',
+					data: [10,15,6],
+					type: 'line',
+					fill:false
+				},{
+					label: 'index of sadness',
+					backgroundColor: 'rgba(204, 201, 201, 1)',
+					borderColor: 'rgba(204, 201, 201, 1)',
+					data: [6,8,8],
+					type: 'line',
+					fill:false
+				}]
+			},
+			options: {
+				scales: {
+					xAxes: [{
+						type: 'time',
+						distribution: 'series',
+						ticks: {
+							source: 'labels'
+						}
+					}],
+					yAxes: [{
+						scaleLabel: {
+							display: false,
+							labelString: 'Closing price ($)'
+						}
+					}]
+				}
+			}
+		};
+		var chart = new Chart(ctx, cfg);
+
+	</script>
+</body>
+
+</html>
