@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Emotional Analysis</title>
+	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400|Montserrat:400,500|Quicksand:300,400,500" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	<div class="top-bar">
+		<span id="date">Feb. 16 </span> Emotional Analysis
+	</div>
+	<div class="item one" data-aos="fade-up">
+		<div id="feel">How do you feel today?</div>
+		<input type="range" min="0" max="10" value="5" class="slider" id="myRange">
+	</div>
+	<div class="item two" data-aos="fade-up">
+        <div class="prompt"> Your overall emotional performance today scores <span class="score"> 63%</span></div>
+        <div class="little">Here's your mood curve generated based on the data extracted from chat history and webcam captures.</div>
+        <div id="chart1"><canvas id="myChart" width="300" height="150"></canvas></div>
+	</div>
+	<div class="item three" data-aos="fade-up">
+        <div class="chat-sub">
+          <div id="chart2"><canvas id="myChart2" width="100" height="120"></canvas></div>
+          <div class="chat">
+              <div class="prompt"> You've talked with <span class="score"> 6</span> people today. </div>
+              <div class="detail">Compared to your past two week, you conducted a steady amount of conversation.</div>
+          </div>
+         </div>
+    </div>
+    <div class="item four" data-aos="fade-up">
+    	<div class="prompt">Your emotional distributions...</div>
+        <div class="little"> Based on your chatting data and webcam captures, the emotions you expressed today contain following characteristics and respective proportions.</div>
+        <div id="chart3"><canvas id="myChart3" width="250" height="150"></canvas></div>
+    </div>
+    <div class="item five" data-aos="fade-up">
+    	<div class="row">
+        <div><image id="delete" src="assets/delete.png"></image></div>
+        <div class="dels">
+            <div class="del">You pushed the delete key <span class="score">663</span> times.</div>
+            <div class="del">Its ratio to all your text input is <span class="score"> 5.25% </span>.</div>
+            <div class="explain little">The ratio of the use of the delete key in some extent represents your anxiety level. Compared to your past records, you are in a neutral state today.</div>
+        </div>
+        </div>
+    </div>
+    <div class="item six" data-aos="fade-up">
+        <div class="prompt">Write down the things that had emotional impacts on you...</div>
+        <textarea></textarea>
+    </div>
+
+    <div class="seven">
+    	<a href="index.html">save today's record</a>
+    </div>
+    
+    </div>
+	</div>
+    
+ <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.js"></script>
+ <script type="text/javascript">
+ 	AOS.init({
+      duration: 2000,
+    })
+
+    Chart.defaults.global.defaultFontFamily = "Quicksand";
+    var data = [0.828748,-0.434525,0,0,0.617273,-0.330433,0,0.615768,-0.489239,-0.887631,0,-0.346099,0.72717,-0.450829,0,0.943727,-0.59565,-0.711424,0.884896,0.892833,-0.403857,0.780535,0,0,0.579268,-0.319734,-0.631552];
+
+    var ctx = document.getElementById("myChart").getContext('2d');
+	var myChart = new Chart(ctx, {
+	    type: 'line',
+	    data: {
+	    	labels: ['12am', '4am', '8am', '12pm', '4pm', '8pm'],
+			datasets: [{
+				label: 'sentiment positiveness',
+				data: data,
+				borderColor: 'rgba(76,175,80,0.8)',
+				fill: false
+			}]
+	    },
+	    options: {
+          legend: {
+            display: false
+          },
+          scales: {
+					xAxes: [{
+						gridLines: {
+							display: false
+						}
+					}],
+					yAxes:[{
+						ticks: {
+							min: -1,
+							max: 1,
+							stepSize: 0.4
+						}
+					}]
+				}
+       }
+      
+    }
+	);
+	var ctx2 = document.getElementById("myChart2").getContext('2d');
+	var myRadarChart = new Chart(ctx2, {
+	    type: 'radar',
+	    data: {
+	    	labels: ['Running', 'Swimming', 'Eating', 'Cycling',"hh",'a'],
+		    datasets: [{
+		        data: [10, 10, 10, 10,10,10],
+		        fill: false,
+		        borderColor: 'rgba(255,255,255,255)',
+		        pointRadius: 5.5,
+		        pointBorderColor: 'rgb(246,77,108)',
+		        pointBackgroundColor: 'rgba(246,77,108,0.8)'
+		    }]
+
+	     },
+	     options: {
+          legend: {
+            display: false
+          },
+          scale: {
+          	pointLabels:{
+                display: false
+          	},
+            gridLines:{
+            	display: false
+            },
+            angleLines:{
+                color: 'rgba(200,200,200,0.3)'
+            },
+            ticks:{
+            	 max: 10,
+                 min: 0,
+            	display: false
+            }
+           }
+         }
+    });
+    var ctx3 = document.getElementById("myChart3").getContext('2d');
+    var mydonutChart = new Chart(ctx3, {
+            type: 'doughnut',
+			data: {
+				datasets: [{
+					data: [
+						5.295413,7.65926,3.475642,2.166309,3.616736
+					],
+					backgroundColor: [
+						'#155e63',
+						'#f64d6c',
+						'#76b39d',
+						'#f9f8eb',
+						'#eae7e7'
+					]
+				}],
+				labels: [
+					'Sadness',
+					'Joy',
+					'Fear',
+					'Disgust',
+					'Anger'
+				]
+			},
+			options: {
+				cutoutPercentage: 65,
+				legend: {
+					position: 'top',
+					labels: {
+                         padding: 20
+                    }
+				}
+			}
+		});
+ </script>
+</body>
+</html>
