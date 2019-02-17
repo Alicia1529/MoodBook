@@ -21,14 +21,18 @@ body{
 .nav-item{
 	color: white;
 	border-radius: 5px;
-	margin-bottom: 5%;
+	margin-bottom: 10%;
 	width: 200px;
 }
 
 
 
 #logo{
-
+   margin-left: 4vw;
+   font-size: 1.5em;
+   font-family: Montserrat;
+   color: white;
+   margin-top: 45%;
 }
 
 a:hover{
@@ -63,6 +67,7 @@ a:active{
 #words{
 	font-size: 1.5em;
 	margin-left: 5vw;
+	margin-bottom: 50px;
 }
 .chart{
 	height: 800px;
@@ -96,7 +101,7 @@ a:active{
 }
 
 .nav{
-	margin-top: 30vh;
+	margin-top: 20%;
 	margin-left: 3vw;
 	display: flex !important;
 	flex-direction: column !important;
