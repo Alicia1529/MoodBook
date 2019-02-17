@@ -93,7 +93,7 @@ for (const filename of fileNames){
 }
 
 setTimeout(function() {
-  fs.writeFile("Output/script_analysis.json", JSON.stringify(textAnalysis), 'utf8', function(err) {
+  fs.writeFile("output/script_analysis.json", JSON.stringify(textAnalysis), 'utf8', function(err) {
     if(err) console.log(err);
   })
 }, 15000);

@@ -44,5 +44,5 @@ for i in range(exp):
     face_analysis.append(ep)
 
 
-with open("face_analysis.json", "w") as outfile:
+with open("output/face_analysis.json", "w") as outfile:
     json.dump(str(face_analysis), outfile)
