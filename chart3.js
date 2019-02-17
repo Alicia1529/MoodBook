@@ -8,15 +8,6 @@ function detail5(){
     document.getElementById("chart4").style.display = "none";
 
     var ctx = document.getElementById("chart3");
-    var response;//to read json
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-           response = JSON.parse(xhttp.responseText);//response is the json file
-        }
-    };
-    xhttp.open("GET", "rachel-test.json", true);
-    xhttp.send();
 
     var dateFormat = 'MMMM DD YYYY';
     var date = moment('February 14 2019', dateFormat);

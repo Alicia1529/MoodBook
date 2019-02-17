@@ -1,22 +1,13 @@
-function chat(){
-	Chart.defaults.global.defaultFontFamily = 'Quicksand';
-	words = document.getElementById("words");
-    words.innerHTML = "Over the past 2 weeks, you have been talking to...";
-    document.getElementById("chart1").style.display = "none";
-    document.getElementById("chart2").style.display = "block";
+function overall(){
+    Chart.defaults.global.defaultFontFamily = 'Quicksand';
+    words = document.getElementById("words");
+    words.innerHTML = "Overall, your emotional status went like:";
+    document.getElementById("chart1").style.display = "block";
+    document.getElementById("chart2").style.display = "none";
     document.getElementById("chart3").style.display = "none";
     document.getElementById("chart4").style.display = "none";
 
-    var ctx = document.getElementById("chart2");
-    var response;//to read json
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-           response = JSON.parse(xhttp.responseText);//response is the json file
-        }
-    };
-    xhttp.open("GET", "rachel-test.json", true);
-    xhttp.send();
+    var ctx = document.getElementById("chart1");
 
     var dateFormat = 'MMMM DD YYYY';
     var date = moment('February 14 2019', dateFormat);
@@ -31,19 +22,19 @@ function chat(){
         }
     }
 
-    var ctx = document.getElementById('chart2').getContext('2d');
+    var ctx = document.getElementById('chart1').getContext('2d');
 
     var color = Chart.helpers.color;
         var cfg = {
-            type: 'bar',
+            type: 'line',
             data: {
                 labels: labels,
                 datasets: [{
-                    label: 'number',
+                    label: 'score',
                     backgroundColor: 'rgba(246,77,108,1)',
                     borderColor: 'rgba(246,77,108,1)',
-                    data: [0, 10, 6],
-                    type: 'bar',
+                    data: [0.755, -0.082, 0.396],
+                    type: 'line',
                     fill: false
                 }]
             },
@@ -59,20 +50,19 @@ function chat(){
                     yAxes: [{
                         scaleLabel: {
                             display: true,
-                            labelString: 'number of people'
+                            labelString: 'unit'
                         },
                         ticks: {
-                            min:0,
-                            max:20
+                            min:-1,
+                            max:1
                         }
                     }]
                 }
             }
         };
-        var chart2 = new Chart(ctx, cfg);
-
-    
+        var chart1 = new Chart(ctx, cfg);
 }
+
 
 function randomNumber(min, max) {
         return Math.random() * (max - min) + min;
@@ -94,3 +84,42 @@ function newDate(days) {
 function newDateString(days) {
     return moment().add(days, 'd').format(timeFormat);
 }
+
+
+function changeColor(evt, tabName){
+    var tabs = document.getElementsByClassName("nav-item");
+    console.log(tabs);
+    for (var i = tabs.length - 1; i >= 0; i--) {
+        tabs[i].style.border = "none";
+    }
+    if (tabName === "t1") {
+        tabs[0].style.border = "solid white 2px";
+        tabs[1].style.border = "none";
+        tabs[2].style.border = "none";
+        tabs[3].style.border = "none";
+    } 
+    else if (tabName === "t2") {
+        tabs[0].style.border = "none";
+        tabs[1].style.border = "solid white 2px";
+        tabs[2].style.border = "none";
+        tabs[3].style.border = "none";
+    }
+    else if (tabName === "t3") {
+        tabs[0].style.border = "none";
+        tabs[1].style.border = "none";
+        tabs[2].style.border = "solid white 2px";
+        tabs[3].style.border = "none";
+    }
+    else if (tabName === "t4") {
+        tabs[0].style.border = "none";
+        tabs[1].style.border = "none";
+        tabs[2].style.border = "none";
+        tabs[3].style.border = "solid white 2px";
+    }
+
+}
+
+
+
+
+
