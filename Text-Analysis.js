@@ -37,6 +37,7 @@ for (const filename of fileNames){
         continue;
       }
       actorData = cms[actor];
+      console.log(actorData.length)
       for (const TextSentence of actorData) {
         setTimeout(() =>{
           var parameters = {
@@ -52,26 +53,36 @@ for (const filename of fileNames){
           }
           naturalLanguageUnderstanding.analyze(parameters, function(err, response) {
             if (err) {
-              console.log('error:', err);
+              // console.log('error:', err);
             }
             else {
               if (response.emotion.hasOwnProperty('document')) {
                 emotion = response.emotion.document.emotion;
                 for (e in emotion) {
                   if (!dateAnalysis.hasOwnProperty(actor)) dateAnalysis[actor] = {};
-                  if (!dateAnalysis[actor].hasOwnProperty(e)) {
-                    dateAnalysis[actor][e] = emotion[e];
+                  if (e === 'joy') {
+                    if (!dateAnalysis[actor].hasOwnProperty("happiness")) {
+                      dateAnalysis[actor]["happiness"] = emotion[e];
+                    } else dateAnalysis[actor]["happiness"] += emotion[e];
                   } else {
-                    dateAnalysis[actor][e] += emotion[e];
+                    if (!dateAnalysis[actor].hasOwnProperty(e)) {
+                      dateAnalysis[actor][e] = emotion[e];
+                    } else dateAnalysis[actor][e] += emotion[e];
                   }
                 }
                 if (!dateAnalysis[actor].hasOwnProperty('sentiment')) dateAnalysis[actor]['sentiment'] = [];
                 dateAnalysis[actor]['sentiment'].push(response.sentiment.document.score);
+                if (dateAnalysis[actor].hasOwnProperty("neutral")){
+                  dateAnalysis[actor]["neutral"] += 0.5-Math.abs(response.sentiment.document.score/actorData.length)
+                }
+                else{
+                  dateAnalysis[actor]["neutral"] = 0.5-Math.abs(response.sentiment.document.score/actorData.length)
+
+                }
               }
             }
           });
         }, 500);
-          
       }
     }
     setTimeout(() => {
