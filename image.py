@@ -20,6 +20,7 @@ headers  = {'Ocp-Apim-Subscription-Key': subscription_key, "Content-Type": "appl
 
 for i in range(exp):
     ep = {}
+    scale = num    #total
     for j in range(num):
         image_path = "Input/Images/Part"+str(i+1)+'/'+str(j+1)+".jpg"
         image_data = open(image_path, "rb").read()
@@ -27,19 +28,21 @@ for i in range(exp):
         response.raise_for_status()
         analysis = response.json()
         emotion = analysis[0]['faceAttributes']['emotion']
+        scale -= (emotion["contempt"]+emotion["surprise"])  #amount discard
         for e in emotion:
-            if e not in ep:
-                ep[e] = emotion[e]
-            else:
-                ep[e] += emotion[e]
+            if e!="contempt" and e!="surprise":
+                ep[e] = ep.get(e,0) +emotion[e]
         sentiment = helper.sentiment(emotion)
-        if 'sentiment' not in ep:
-            ep['sentiment'] = [sentiment]
-        else:
-            ep['sentiment'].append(sentiment)
+        ep['sentiment'] = ep.get('sentiment',[])
+        ep["sentiment"].append(sentiment)
         time.sleep(5)
+    scale = scale/num   #percentage
+    for e in ["neutral","happiness","anger","sadness","disgust","fear"]:
+        ep[e] = ep[e]/scale
+
     print(ep)
     face_analysis.append(ep)
+
 
 with open("face_analysis.json", "w") as outfile:
     json.dump(str(face_analysis), outfile)
